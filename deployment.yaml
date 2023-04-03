@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: history-deployment
+  labels:
+    name: history-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: history-label
+  template:
+    metadata:
+      labels:
+        name: history-label
+    spec:
+      containers:
+      - name: history
+        image: 643746770507.dkr.ecr.eu-central-1.amazonaws.com/history:v7
+        imagePullPolicy: IfNotPresent
+        ports:
+          - name: liveness-port
+            containerPort: 8080
