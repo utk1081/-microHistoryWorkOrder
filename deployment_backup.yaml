@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: deployment-history
+
+  labels:
+
+    name: label-history
+
+spec:
+
+  replicas: 1
+
+  selector:
+
+    matchLabels:
+
+      name: label-history
+
+  template:
+
+    metadata:
+
+      labels:
+
+        name: label-history
+
+    spec:
+      containers:
+      - name: nginx
+        image: 643746770507.dkr.ecr.eu-central-1.amazonaws.com/history:v2
+        #imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
